@@ -12,7 +12,7 @@ class Bitbankcc
   @@base_public_url = "https://public.bitbank.cc"
   @@ssl = true
 
-  def initialize(key, secret, params = {})
+  def initialize(key = nil, secret = nil, params = {})
     @key = key
     @secret = secret
     if !params[:base_url].nil?
