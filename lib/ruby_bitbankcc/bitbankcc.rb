@@ -29,7 +29,6 @@ class Bitbankcc
     request_for_get(path, nonce)
   end
 
-
   def read_active_orders(pair, count = nil, from_id = nil, end_id = nil, since = nil, _end = nil)
     path = "/v1/user/spot/active_orders"
     nonce = Time.now.to_i.to_s
@@ -82,8 +81,12 @@ class Bitbankcc
   private
     def http_request(uri, request)
       https = Net::HTTP.new(uri.host, uri.port)
-      https.use_ssl = true
-      https.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      if @@ssl
+        https.use_ssl = true
+        https.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
+
       response = https.start do |h|
         h.request(request)
       end
