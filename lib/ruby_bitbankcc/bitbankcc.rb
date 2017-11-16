@@ -91,6 +91,19 @@ class Bitbankcc
     request_for_get(path, nonce, params)
   end
 
+  def request_withdrawal(asset, uuid, amount, otp_token = nil, sms_token = nil)
+    path = "/v1/user/request_withdrawal"
+    nonce = Time.now.to_i.to_s
+    body = {
+      asset: asset,
+      uuid: uuid,
+      amount: amount,
+      otp_token: otp_token,
+      sms_token: sms_token
+    }.compact.to_json
+    request_for_post(path, nonce, body)
+  end
+
   def read_ticker(pair)
     RestClient.get @@base_public_url + "/#{pair}/ticker"
   end
