@@ -66,6 +66,21 @@ class Bitbankcc
     request_for_post(path, nonce, body)
   end
 
+  def read_trade_history(pair, count = nil, order_id = nil, since = nil, _end = nil, order = nil)
+    path = "/v1/user/spot/trade_history"
+    nonce = Time.now.to_i.to_s
+    params = {
+      pair: pair,
+      count: count,
+      order_id: order_id,
+      since: since,
+      end: _end,
+      order: order
+    }.compact
+
+    request_for_get(path, nonce, params)
+  end
+
   def read_ticker(pair)
     RestClient.get @@base_public_url + "/#{pair}/ticker"
   end

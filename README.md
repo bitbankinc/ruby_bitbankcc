@@ -32,5 +32,6 @@ bbcc.read_balance()
 bbcc.read_active_orders('btc_jpy')
 bbcc.create_order('btc_jpy', "0.001", 130000, 'buy', 'limit')
 bbcc.cancel_order('btc_jpy', order_id)
+bbcc.read_trade_history('btc_jpy')
 JSON.parse(response.body)
 ```
