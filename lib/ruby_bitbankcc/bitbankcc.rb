@@ -81,6 +81,16 @@ class Bitbankcc
     request_for_get(path, nonce, params)
   end
 
+  def read_withdrawal_account(asset)
+    path = "/v1/user/withdrawal_account"
+    nonce = Time.now.to_i.to_s
+    params = {
+      asset: asset
+    }.compact
+
+    request_for_get(path, nonce, params)
+  end
+
   def read_ticker(pair)
     RestClient.get @@base_public_url + "/#{pair}/ticker"
   end
