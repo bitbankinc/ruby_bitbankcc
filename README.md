@@ -33,5 +33,7 @@ bbcc.read_active_orders('btc_jpy')
 bbcc.create_order('btc_jpy', "0.001", 130000, 'buy', 'limit')
 bbcc.cancel_order('btc_jpy', order_id)
 bbcc.read_trade_history('btc_jpy')
+bbcc.read_withdrawal_account('btc')
+bbcc.request_withdrawal('btc', 'ACCOUNT UUID', '0.001', 'OTP TOKEN', 'SMS TOKEN')
 JSON.parse(response.body)
 ```
