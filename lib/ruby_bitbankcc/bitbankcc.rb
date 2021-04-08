@@ -43,7 +43,7 @@ class Bitbankcc
     request_for_get(path, nonce, params)
   end
 
-  def create_order(pair, amount, price, side, type)
+  def create_order(pair, amount, price, side, type, post_only = false)
     path = "/v1/user/spot/order"
     nonce = Time.now.to_i.to_s
     body = {
@@ -51,7 +51,8 @@ class Bitbankcc
       amount: amount,
       price: price,
       side: side,
-      type: type
+      type: type,
+      post_only: post_only
     }.to_json
     request_for_post(path, nonce, body)
   end
@@ -128,6 +129,7 @@ class Bitbankcc
       response = https.start do |h|
         h.request(request)
       end
+      # XXX: I think we should JSON.parse it, but it makes backward incompatibility. What do you think, code wanderers?
       response.body
     end
 

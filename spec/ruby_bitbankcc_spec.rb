@@ -12,20 +12,24 @@ describe RubyBitbankcc do
     bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
     res = bbcc.read_transactions('btc_jpy')
     puts res
+    expect(JSON.parse(res)['success']).to eq 1
     res = bbcc.read_transactions('btc_jpy', '20170215')
     puts res
+    expect(JSON.parse(res)['success']).to eq 1
   end
 
   it 'read ticker' do
     bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
     res = bbcc.read_ticker('btc_jpy')
     puts res
+    expect(JSON.parse(res)['success']).to eq 1
   end
 
   it 'read order books' do
     bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
     res = bbcc.read_order_books('btc_jpy')
     puts res
+    expect(JSON.parse(res)['success']).to eq 1
   end
 
   it 'generate get signature' do
@@ -44,6 +48,7 @@ describe RubyBitbankcc do
     bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
     res = bbcc.read_balance()
     puts res
+    expect(JSON.parse(res)['success']).to eq 1
     sleep(1)
   end
 
@@ -51,6 +56,7 @@ describe RubyBitbankcc do
     bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
     res = bbcc.read_active_orders('btc_jpy')
     puts res
+    expect(JSON.parse(res)['success']).to eq 1
     sleep(1)
   end
 
@@ -59,9 +65,24 @@ describe RubyBitbankcc do
     res = bbcc.create_order('btc_jpy', "0.001", 130000, 'buy', 'limit')
     order_id = JSON.parse(res)['data']['order_id']
     puts res
+    expect(JSON.parse(res)['success']).to eq 1
     sleep(1)
     res = bbcc.cancel_order('btc_jpy', order_id)
     puts res
+    expect(JSON.parse(res)['success']).to eq 1
+    sleep(1)
+  end
+
+  it 'create order with post_only and cancel order' do
+    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
+    res = bbcc.create_order('btc_jpy', "0.001", 130000, 'buy', 'limit', true)
+    order_id = JSON.parse(res)['data']['order_id']
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+    sleep(1)
+    res = bbcc.cancel_order('btc_jpy', order_id)
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
     sleep(1)
   end
 end
