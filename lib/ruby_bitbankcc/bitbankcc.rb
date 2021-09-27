@@ -43,7 +43,7 @@ class Bitbankcc
     request_for_get(path, nonce, params)
   end
 
-  def create_order(pair, amount, price, side, type, post_only = false)
+  def create_order(pair, amount, price, side, type, post_only = false, trigger_price = nil)
     path = "/v1/user/spot/order"
     nonce = Time.now.to_i.to_s
     body = {
@@ -52,7 +52,8 @@ class Bitbankcc
       price: price,
       side: side,
       type: type,
-      post_only: post_only
+      post_only: post_only,
+      trigger_price: trigger_price
     }.to_json
     request_for_post(path, nonce, body)
   end
