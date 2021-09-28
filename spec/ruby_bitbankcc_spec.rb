@@ -85,4 +85,17 @@ describe RubyBitbankcc do
     expect(JSON.parse(res)['success']).to eq 1
     sleep(1)
   end
+
+  it 'create order with trigger_price and cancel order' do
+    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
+    res = bbcc.create_order('btc_jpy', "0.001", 130000, 'buy', 'stop_limit', false, 140000)
+    order_id = JSON.parse(res)['data']['order_id']
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+    sleep(1)
+    res = bbcc.cancel_order('btc_jpy', order_id)
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+    sleep(1)
+  end
 end
