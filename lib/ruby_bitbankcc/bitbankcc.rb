@@ -83,6 +83,20 @@ class Bitbankcc
     request_for_get(path, nonce, params)
   end
 
+  def read_deposit_history(asset, count = nil, since = nil, _end = nil, order = nil)
+    path = "/v1/user/deposit_history"
+    nonce = Time.now.to_i.to_s
+    params = {
+      asset: asset,
+      count: count,
+      since: since,
+      end: _end,
+      order: order
+    }.compact
+
+    request_for_get(path, nonce, params)
+  end
+
   def read_withdrawal_account(asset)
     path = "/v1/user/withdrawal_account"
     nonce = Time.now.to_i.to_s
@@ -104,6 +118,20 @@ class Bitbankcc
       sms_token: sms_token
     }.compact.to_json
     request_for_post(path, nonce, body)
+  end
+
+  def read_withdrawal_history(asset, count = nil, since = nil, _end = nil, order = nil)
+    path = "/v1/user/withdrawal_history"
+    nonce = Time.now.to_i.to_s
+    params = {
+      asset: asset,
+      count: count,
+      since: since,
+      end: _end,
+      order: order
+    }.compact
+
+    request_for_get(path, nonce, params)
   end
 
   def read_ticker(pair)
