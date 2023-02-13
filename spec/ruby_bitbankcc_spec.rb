@@ -98,4 +98,38 @@ describe RubyBitbankcc do
     expect(JSON.parse(res)['success']).to eq 1
     sleep(1)
   end
+
+  it 'reads deposit history' do
+    # before testing, we need some deposit history to test...
+    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
+    res = bbcc.read_deposit_history('btc')
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+    expect(JSON.parse(res)['data']['deposits'][0]['asset']).to eq 'btc'
+    sleep(1)
+    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
+    res = bbcc.read_deposit_history('jpy')
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+    expect(JSON.parse(res)['data']['deposits'][0]['asset']).to eq 'jpy'
+    sleep(1)
+  end
+
+  it 'reads withdrawal history' do
+    # before testing, we need some withdrawal history to test...
+    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
+    res = bbcc.read_withdrawal_history('btc')
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+    expect(JSON.parse(res)['data']['withdrawals'][0]['asset']).to eq 'btc'
+    expect(JSON.parse(res)['data']['withdrawals'][0]['address']).not_to be nil
+    sleep(1)
+    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
+    res = bbcc.read_withdrawal_history('jpy')
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+    expect(JSON.parse(res)['data']['withdrawals'][0]['asset']).to eq 'jpy'
+    expect(JSON.parse(res)['data']['withdrawals'][0]['account_number']).not_to be nil
+    sleep(1)
+  end
 end
