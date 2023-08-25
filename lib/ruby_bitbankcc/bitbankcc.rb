@@ -146,6 +146,10 @@ class Bitbankcc
     RestClient.get @@base_public_url + "/#{pair}/transactions" + (date.empty? ? '' : '/' + date)
   end
 
+  def read_circuit_break_info(pair)
+    RestClient.get @@base_public_url + "/#{pair}/circuit_break_info"
+  end
+
   private
     def http_request(uri, request)
       https = Net::HTTP.new(uri.host, uri.port)
