@@ -132,4 +132,11 @@ describe RubyBitbankcc do
     expect(JSON.parse(res)['data']['withdrawals'][0]['account_number']).not_to be nil
     sleep(1)
   end
+
+  it 'read circuit_break_info' do
+    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
+    res = bbcc.read_circuit_break_info('btc_jpy')
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+  end
 end
