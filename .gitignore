@@ -1,4 +1,4 @@
 /Gemfile.lock
-/vendor/bundler
+/vendor/bundle
 /.bundle/*
 /pkg

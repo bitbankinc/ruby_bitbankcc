@@ -54,6 +54,14 @@ describe RubyBitbankcc do
     sleep(1)
   end
 
+  it 'read margin positions' do
+    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
+    res = bbcc.read_margin_positions()
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+    sleep(1)
+  end
+
   it 'create order and cancel order' do
     bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
     res = bbcc.create_order('btc_jpy', "0.001", 130000, 'buy', 'limit')

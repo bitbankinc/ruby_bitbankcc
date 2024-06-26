@@ -51,6 +51,12 @@ class Bitbankcc
     request_for_get(path, nonce, params)
   end
 
+  def read_margin_positions()
+    path = "/v1/user/margin/positions"
+    nonce = Time.now.to_i.to_s
+    request_for_get(path, nonce)
+  end
+
   def create_order(pair, amount, price, side, type, post_only = false, trigger_price = nil)
     path = "/v1/user/spot/order"
     nonce = get_current_milisec
