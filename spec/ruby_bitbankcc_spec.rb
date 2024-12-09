@@ -32,16 +32,10 @@ describe RubyBitbankcc do
     expect(JSON.parse(res)['success']).to eq 1
   end
 
-  it 'generate get signature' do
+  it 'generate signature' do
     bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
-    signature = bbcc.send(:get_get_signature, '/v1/user/assets', 'hogeho', '1492954196103')
+    signature = bbcc.send(:get_signature, 'hogeho', '1492954196103/v1/user/assets')
     expect(signature).to eq 'e6230395d58ecae37ca0aad261ed278b38dd5751e24b101ef8a843de552674bf'
-  end
-
-  it 'generate post signature' do
-    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
-    signature = bbcc.send(:get_post_signature, 'hogeho', '1493006841189', '{"pair": "btc_jpy", "amount": "0.001", "price": 130000, "side": "buy", "type": "limit"}')
-    expect(signature).to eq 'b6b62902417156a63c3f2fc0f65d5f82917137f0ea0ec7fbee5c048fd12877dd'
   end
 
   it 'read balance' do

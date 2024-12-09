@@ -24,7 +24,11 @@ Or install it yourself as:
 #!/usr/bin/env ruby -Ilib
 require 'ruby_bitbankcc'
 
-bbcc = Bitbankcc.new("YOUR API KEY", "YOUR SECRET KEY")
+# use request_time method
+bbcc = Bitbankcc.new("YOUR API KEY", "YOUR SECRET KEY",params= {"auth_method"=> "request_time", "time_window"=> "5000"})
+# use nonce method
+bbcc = Bitbankcc.new("YOUR API KEY", "YOUR SECRET KEY",params= {"auth_method"=> "nonce"})
+
 bbcc.read_transactions('btc_jpy')
 bbcc.read_ticker('btc_jpy')
 bbcc.read_order_books('btc_jpy')
