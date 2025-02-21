@@ -141,4 +141,11 @@ describe RubyBitbankcc do
     puts res
     expect(JSON.parse(res)['success']).to eq 1
   end
+
+  it 'read user subscribe' do
+    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
+    res = bbcc.read_user_subscribe()
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+  end
 end
