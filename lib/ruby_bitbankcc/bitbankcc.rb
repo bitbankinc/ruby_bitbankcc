@@ -51,7 +51,13 @@ class Bitbankcc
     request_for_get(path, nonce, params)
   end
 
-  def create_order(pair, amount, price, side, type, post_only = false, trigger_price = nil)
+  def read_margin_positions()
+    path = "/v1/user/margin/positions"
+    nonce = get_current_milisec
+    request_for_get(path, nonce)
+  end
+
+  def create_order(pair, amount, price, side, type, post_only = false, trigger_price = nil, position_side = nil)
     path = "/v1/user/spot/order"
     nonce = get_current_milisec
     body = {
@@ -61,7 +67,8 @@ class Bitbankcc
       side: side,
       type: type,
       post_only: post_only,
-      trigger_price: trigger_price
+      trigger_price: trigger_price,
+      position_side: position_side
     }.to_json
     request_for_post(path, nonce, body)
   end
