@@ -149,6 +149,12 @@ class Bitbankcc
     request_for_get(path, nonce, params)
   end
 
+  def read_user_subscribe()
+    path = "/v1/user/subscribe"
+    nonce = get_current_milisec
+    request_for_get(path, nonce)
+  end
+
   def read_ticker(pair)
     RestClient.get @@base_public_url + "/#{pair}/ticker"
   end
