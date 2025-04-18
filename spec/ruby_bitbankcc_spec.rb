@@ -148,4 +148,11 @@ describe RubyBitbankcc do
     puts res
     expect(JSON.parse(res)['success']).to eq 1
   end
+
+  it 'read candlestick' do
+    bbcc = Bitbankcc.new(APIKEY, SECRETKEY)
+    res = bbcc.read_candlestick('btc_jpy', '1month', '2024')
+    puts res
+    expect(JSON.parse(res)['success']).to eq 1
+  end
 end

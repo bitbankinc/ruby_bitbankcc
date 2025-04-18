@@ -167,6 +167,10 @@ class Bitbankcc
     RestClient.get @@base_public_url + "/#{pair}/transactions" + (date.empty? ? '' : '/' + date)
   end
 
+  def read_candlestick(pair, candle_type, date)
+    RestClient.get @@base_public_url + "/#{pair}/candlestick/#{candle_type}/#{date}"
+  end
+
   def read_circuit_break_info(pair)
     RestClient.get @@base_public_url + "/#{pair}/circuit_break_info"
   end
