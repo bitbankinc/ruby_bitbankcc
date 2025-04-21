@@ -46,5 +46,7 @@ bbcc.read_deposit_history('btc')
 bbcc.read_withdrawal_account('btc')
 bbcc.request_withdrawal('btc', 'ACCOUNT UUID', '0.001', 'OTP TOKEN', 'SMS TOKEN')
 bbcc.read_withdrawal_history('btc')
+bbcc.read_user_subscribe()
+bbcc.read_candlestick('btc_jpy', '1month', '2024')
 JSON.parse(response.body)
 ```
