@@ -1,3 +1,3 @@
 module RubyBitbankcc
-  VERSION = "0.6.0"
+  VERSION = "0.4.2"
 end
