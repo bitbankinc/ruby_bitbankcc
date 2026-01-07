@@ -98,7 +98,7 @@ class Bitbankcc
     request_for_get(path, nonce, params)
   end
 
-  def read_deposit_history(asset, count = nil, since = nil, _end = nil, order = nil)
+  def read_deposit_history(asset = nil, count = nil, since = nil, _end = nil, order = nil)
     path = "/v1/user/deposit_history"
     nonce = get_current_milisec
     params = {
@@ -135,7 +135,7 @@ class Bitbankcc
     request_for_post(path, nonce, body)
   end
 
-  def read_withdrawal_history(asset, count = nil, since = nil, _end = nil, order = nil)
+  def read_withdrawal_history(asset = nil, count = nil, since = nil, _end = nil, order = nil)
     path = "/v1/user/withdrawal_history"
     nonce = get_current_milisec
     params = {
